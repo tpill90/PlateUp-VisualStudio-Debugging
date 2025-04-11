@@ -1,1 +1,2 @@
-<!-- TODO -->
+<!-- TODO - Add debugging shim -->
+<!-- TODO start working on github actions build.  Need to build bepinex, the debugging plugin.  Building the release package needs the scripts + other files as well -->
