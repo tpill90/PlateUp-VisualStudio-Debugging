@@ -1,0 +1,3 @@
+[submodule "BepinEx"]
+	path = BepinEx
+	url = https://github.com/tpill90/PlateUp-BepinEx
