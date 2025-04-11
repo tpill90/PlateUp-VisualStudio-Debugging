@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
+        <ModName>AutoRestaurantLoader</ModName>
+    </PropertyGroup>
+
+    <!-- Lets us use shared configuration for all the projects.  Must be imported after the above properties so that paths resolve correctly -->
+    <Import Project="..\..\Environment.props" Condition="Exists('..\..\Environment.props')" />
+
+    <ItemGroup>
+        <Compile Remove="workshop\content\**" />
+        <EmbeddedResource Remove="workshop\content\**" />
+        <None Remove="workshop\content\**" />
+    </ItemGroup>
+
+    <!-- References -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+
+        <Reference Include="0Harmony" />
+        <Reference Include="Controllers" Publicize="true" />
+        <Reference Include="Kitchen.Common" Publicize="true" />
+        <Reference Include="Kitchen.GameData" Publicize="true" />
+        <Reference Include="Kitchen.FranchiseMode" Publicize="true" />
+        <Reference Include="Kitchen.Networking" Publicize="true" />
+        <Reference Include="Kitchen.Persistence" Publicize="true" />
+        <Reference Include="Kitchen.RestaurantMode" Publicize="true" />
+        <Reference Include="KitchenMode" Publicize="true" />
+        <Reference Include="KitchenMods" Publicize="true" />
+        <Reference Include="PlatformSettings" Publicize="true" />
+        <Reference Include="PreferenceSystem-Workshop">
+            <HintPath>$(WorshopDir)\2949018507\PreferenceSystem-Workshop.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Serialization" Publicize="true" />
+        <Reference Include="Unity.Entities" />
+        <Reference Include="UnityEngine.AssetBundleModule" />
+        <Reference Include="UnityEngine.CoreModule" />
+    </ItemGroup>
+</Project>
