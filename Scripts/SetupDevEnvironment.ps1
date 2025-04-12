@@ -1,5 +1,4 @@
 # Notes
-# mono-2.0-bdwgc.dll does not seem to be needed.  But I'm not going to delete it just yet because it was difficult to compile.
 # TODO write an uninstall script as well
 
 Push-Location $PSScriptRoot
@@ -35,3 +34,5 @@ if(-Not($containsText))
 Write-Host -ForegroundColor Yellow "Debugging environment setup!"
 
 Pop-Location
+
+# TODO change WriteUnityLog = false to true
