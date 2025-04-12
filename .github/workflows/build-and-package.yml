@@ -14,6 +14,7 @@ jobs:
               run: >
                   dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist
 
+                  mkdir ./dist/Bepinex
                   cp -r BepinEx/bin/dist/Unity.Mono-win-x64 ./dist/Bepinex
             - name: Copy Libraries
               run: cp -r libraries ./dist/Libraries
