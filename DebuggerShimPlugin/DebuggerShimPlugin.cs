@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-
-namespace BepinExDebuggerShim
+﻿namespace DebuggerShimPlugin
 {
     [UsedImplicitly]
     [BepInPlugin($"tpill90.{ModInfo.ModName}", ModInfo.ModName, ModInfo.ModVersion)]
