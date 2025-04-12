@@ -3,27 +3,27 @@ run-name: "Build and package"
 on: [push]
 
 jobs:
-    build-and-package:
-        runs-on: ubuntu-latest
-        container: mcr.microsoft.com/dotnet/sdk:6.0
-        steps:
-            - uses: actions/checkout@v3
-              with:
-                  submodules: true
-            - name: Build BepinEx
-              run: >
-                  dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist
+  build-and-package:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:6.0
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - run: mkdir ./dist/Bepinex
+      - name: Build BepinEx
+        run: >
+          dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist
 
-                  mkdir ./dist/Bepinex
-                  cp -r BepinEx/bin/dist/Unity.Mono-win-x64 ./dist/Bepinex
-            - name: Copy Libraries
-              run: cp -r libraries ./dist/Libraries
+          cp -r BepinEx/bin/dist/Unity.Mono-win-x64 ./dist/Bepinex
+      - name: Copy Libraries
+        run: cp -r libraries ./dist/Libraries
 
-            - name: Copy Scripts
-              run: cp -r Scripts ./dist
+      - name: Copy Scripts
+        run: cp -r Scripts ./dist
 
-            - name: Upload
-              uses: actions/upload-artifact@v4
-              with:
-                  path: dist/
-                  if-no-files-found: error
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist/
+          if-no-files-found: error
