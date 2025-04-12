@@ -1,7 +1,7 @@
 # TODO clean repo first
 Push-Location $PSScriptRoot
 
-mkdir ./dist
+mkdir ./dist -ErrorAction SilentlyContinue
 
 # Building BepinEx
 dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist

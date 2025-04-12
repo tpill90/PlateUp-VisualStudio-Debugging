@@ -4,3 +4,4 @@ obj
 bin
 /publicized_assemblies
 **/workshop/content/**/*.dll
+/dist
