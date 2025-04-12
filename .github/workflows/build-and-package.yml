@@ -3,18 +3,24 @@ run-name: "Build and package"
 on: [push]
 
 jobs:
-    build-bepinex:
+    build-and-package:
         runs-on: ubuntu-latest
         container: mcr.microsoft.com/dotnet/sdk:6.0
         steps:
             - uses: actions/checkout@v3
               with:
                   submodules: true
-            - name: Publish
+            - name: Build BepinEx
               run: >
                   dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist
 
-                  cp -r BepinEx/bin/dist/Unity.Mono-win-x64 ./dist
+                  cp -r BepinEx/bin/dist/Unity.Mono-win-x64 ./dist/Bepinex
+            - name: Copy Libraries
+              run: cp -r libraries ./dist/Libraries
+
+            - name: Copy Scripts
+              run: cp -r Scripts ./dist
+
             - name: Upload
               uses: actions/upload-artifact@v4
               with:
