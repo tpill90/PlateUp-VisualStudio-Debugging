@@ -6,11 +6,6 @@
         <ModName>BepinExDebuggerShim</ModName>
     </PropertyGroup>
 
-    <!-- Lets us use shared configuration for all the projects.  Must be imported after the above properties so that paths resolve correctly -->
-    <Import Project="..\..\Environment.props" Condition="Exists('..\..\Environment.props')" />
-
-
-
     <!-- References -->
     <ItemGroup>
         <Reference Include="BepInEx.Core">
