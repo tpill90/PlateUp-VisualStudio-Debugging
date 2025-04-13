@@ -23,46 +23,39 @@
     <PropertyGroup>
         <!-- This needs to be changed to your Plateup install directory -->
         <PlateUpInstallDir>C:\Program Files (x86)\Steam\steamapps\common\PlateUp</PlateUpInstallDir>
-        <WorshopDir>C:\Program Files (x86)\Steam\steamapps\workshop\content\1599600</WorshopDir>
 
-        <!--This tells the compiler where to look for assemblies. Don't change it.-->
-        <Managed>$(PlateUpInstallDir)\PlateUp\PlateUp_Data\Managed</Managed>
-        <AssemblySearchPaths>$(AssemblySearchPaths);$(Managed);$(PlateUpInstallDir)\PlateUp\BepInEx\core</AssemblySearchPaths>
 
         <BepinExPluginsDir>$(PlateUpInstallDir)\PlateUp\BepInEx\plugins</BepinExPluginsDir>
         <Pdb2mdbPath>$(MSBuildThisFileDirectory)_Development\Libraries\pdb2mdb.exe</Pdb2mdbPath>
 
-        <TestModDeployPath>$(PlateUpInstallDir)\PlateUp\Mods\$(ModName)\content</TestModDeployPath>
-        <ReleaseAssetPath>$(MSBuildProjectDirectory)\workshop\content </ReleaseAssetPath>
     </PropertyGroup>
 
-    <Target Name="PostBuildDebug" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
-        <!-- Converts PDB to MDB for debugging with the Unity debugger -->
-        <Message Text="Running pdb2mdb.exe on $(TargetPath)" Importance="high" />
-        <Exec Command="$(Pdb2mdbPath) $(TargetPath)"/>
+    <ItemGroup>
+      <ProjectReference Include="..\BepinEx\BepInEx.Core\BepInEx.Core.csproj" />
+      <ProjectReference Include="..\BepinEx\Runtimes\Unity\BepInEx.Unity.Mono\BepInEx.Unity.Mono.csproj" />
+    </ItemGroup>
 
-        <!-- Copies the mod into the plateup mod dir alongside the executable -->
-        <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(TestModDeployPath)" />
+    <!-- <Target Name="PostBuildDebug" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
+    <Message Text="Running pdb2mdb.exe on $(TargetPath)" Importance="high" />
+    <Exec Command="$(Pdb2mdbPath) $(TargetPath)"/>
 
-        <!-- Also copy to the bepinex plugin so we can debug with Visual studio breakpoints-->
-        <ItemGroup>
-            <!--TODO comment-->
-            <WorkshopReferences Include="@(ReferencePath)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Identity)', '.*\\steamapps\\workshop\\content.*$'))" />
-        </ItemGroup>
-        <Copy SourceFiles="@(WorkshopReferences)" DestinationFolder="$(BepinExPluginsDir)" />
-        <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(BepinExPluginsDir)" />
-    </Target>
+    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(TestModDeployPath)" />
+
+    <ItemGroup>
+    <WorkshopReferences Include="@(ReferencePath)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Identity)', '.*\\steamapps\\workshop\\content.*$'))" />
+</ItemGroup>
+<Copy SourceFiles="@(WorkshopReferences)" DestinationFolder="$(BepinExPluginsDir)" />
+<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(BepinExPluginsDir)" />
+</Target> -->
 
     <!-- References -->
     <ItemGroup>
-        <Reference Include="BepInEx.Core">
+        <!-- <Reference Include="BepInEx.Core">
             <HintPath>$(PlateUpInstallDir)\PlateUp\BepInEx\Core\BepInEx.Core.dll</HintPath>
         </Reference>
         <Reference Include="BepInEx.Unity.Mono">
             <HintPath>$(PlateUpInstallDir)\PlateUp\BepInEx\Core\BepInEx.Unity.Mono.dll</HintPath>
-        </Reference>
+        </Reference> -->
 
-        <Reference Include="UnityEngine" />
-        <Reference Include="UnityEngine.CoreModule" />
     </ItemGroup>
 </Project>
