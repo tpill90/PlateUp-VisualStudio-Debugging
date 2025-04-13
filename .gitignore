@@ -5,3 +5,5 @@ bin
 /publicized_assemblies
 **/workshop/content/**/*.dll
 /dist
+/DebuggerShimPlugin/output
+/ReleasePackage.zip

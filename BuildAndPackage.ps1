@@ -13,6 +13,10 @@ Copy-Item -Recurse libraries ./dist/Libraries
 Copy-Item -Recurse Scripts/* ./dist
 
 # Building the plugin and copying it to the right output dir
-dotnet build -- project DebuggerShimPlugin/DebuggerShimPlugin.csproj --output ./dist/Bepinex/BepInEx/plugins
+dotnet build DebuggerShimPlugin/DebuggerShimPlugin.csproj --output ./DebuggerShimPlugin/output
+Copy-Item ./DebuggerShimPlugin/output/DebuggerShimPlugin-Workshop.dll ./dist/BepinEx/BepInEx/plugins
+
+# Creating the final zip
+Compress-Archive ./dist/* -DestinationPath ReleasePackage.zip -Force
 
 Pop-Location
