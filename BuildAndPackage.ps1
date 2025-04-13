@@ -12,4 +12,7 @@ Copy-Item -Recurse BepinEx/bin/dist/Unity.Mono-win-x64/. ./dist/Bepinex
 Copy-Item -Recurse libraries ./dist/Libraries
 Copy-Item -Recurse Scripts/* ./dist
 
+# Building the plugin and copying it to the right output dir
+dotnet build -- project DebuggerShimPlugin/DebuggerShimPlugin.csproj --output ./dist/Bepinex/BepInEx/plugins
+
 Pop-Location

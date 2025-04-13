@@ -1,5 +1,4 @@
-﻿using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
-namespace DebuggerShimPlugin
+﻿namespace DebuggerShimPlugin
 {
     [UsedImplicitly]
     [BepInPlugin($"tpill90.{ModInfo.ModName}", ModInfo.ModName, ModInfo.ModVersion)]
@@ -30,7 +29,6 @@ namespace DebuggerShimPlugin
                 Assembly assembly = Assembly.LoadFrom(file.FullName);
                 log.LogInfo($"      Loaded {assembly.FullName}");
             }
-
         }
     }
 }
