@@ -1,21 +1,21 @@
 Push-Location $PSScriptRoot
 
-git clean -fxd
-mkdir ./dist -ErrorAction SilentlyContinue
+# git clean -fxd
+mkdir ./DebuggingTools -ErrorAction SilentlyContinue
 
 # Building BepinEx
 dotnet run --project BepinEx/build/Build.csproj -- --target MakeDist
-Copy-Item -Recurse BepinEx/bin/dist/Unity.Mono-win-x64/. ./dist/Bepinex
+Copy-Item -Recurse BepinEx/bin/dist/Unity.Mono-win-x64/. ./DebuggingTools/Bepinex
 
 # Copying libraries and scripts
-Copy-Item -Recurse libraries ./dist/Libraries
-Copy-Item -Recurse Scripts/* ./dist
+Copy-Item -Recurse libraries ./DebuggingTools/Libraries
+Copy-Item -Recurse Scripts/* ./DebuggingTools
 
 # Building the plugin and copying it to the right output dir
 dotnet build DebuggerShimPlugin/DebuggerShimPlugin.csproj --output ./DebuggerShimPlugin/output
-Copy-Item ./DebuggerShimPlugin/output/DebuggerShimPlugin-Workshop.dll ./dist/BepinEx/BepInEx/plugins
+Copy-Item ./DebuggerShimPlugin/output/DebuggerShimPlugin-Workshop.dll ./DebuggingTools/BepinEx/BepInEx/plugins
 
 # Creating the final zip
-Compress-Archive ./dist/* -DestinationPath ReleasePackage.zip -Force
+Compress-Archive ./DebuggingTools -DestinationPath ReleasePackage.zip -Force
 
 Pop-Location

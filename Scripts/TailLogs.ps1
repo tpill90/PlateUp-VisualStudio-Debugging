@@ -1,6 +1,4 @@
-# Getting PlateUp install dir
-[xml]$parsedProps = Get-Content Environment.props
-$plateupInstallDir = ([string]$parsedProps.Project.PropertyGroup.PlateUpInstallDir).Trim()
+$plateupInstallDir = "C:\Program Files (x86)\Steam\steamapps\common\PlateUp"
 $logFile = "$plateupInstallDir\PlateUp\BepInEx\LogOutput.log"
 
 #TODO review this and cleanup the generated code

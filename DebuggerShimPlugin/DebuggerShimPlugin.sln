@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.PluginProvider", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Unity.Mono.Preloader", "..\BepinEx\Runtimes\Unity\BepInEx.Unity.Mono.Preloader\BepInEx.Unity.Mono.Preloader.csproj", "{759292A5-339C-B953-FD38-86C1F429F4FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Unity.Common", "..\BepinEx\Runtimes\Unity\BepInEx.Unity.Common\BepInEx.Unity.Common.csproj", "{50976345-AE93-B95E-2F2C-521C163C3D1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{759292A5-339C-B953-FD38-86C1F429F4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{759292A5-339C-B953-FD38-86C1F429F4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{759292A5-339C-B953-FD38-86C1F429F4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50976345-AE93-B95E-2F2C-521C163C3D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50976345-AE93-B95E-2F2C-521C163C3D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50976345-AE93-B95E-2F2C-521C163C3D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50976345-AE93-B95E-2F2C-521C163C3D1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{7AC66B7A-75D1-7C92-CC91-141A54542E83} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{E1106F7B-1500-BAA2-0922-982F76DE34AC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{759292A5-339C-B953-FD38-86C1F429F4FE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{50976345-AE93-B95E-2F2C-521C163C3D1B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B383763-F46B-4382-83DD-B204B300EFBB}

@@ -3,18 +3,17 @@
 
     <PropertyGroup>
         <AssemblyName>$(MSBuildProjectName)-Workshop</AssemblyName>
-        <ModName>BepinExDebuggerShim</ModName>
+        <ModName>DebuggerShimPlugin</ModName>
     </PropertyGroup>
 
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <OutputType>Library</OutputType>
         <LangVersion>latest</LangVersion>
-
-        <!-- Allows us to use publicized assemblies -->
-        <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     </PropertyGroup>
+
+
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DebugType>Full</DebugType>
@@ -28,32 +27,20 @@
         <Pdb2mdbPath>$(MSBuildThisFileDirectory)_Development\Libraries\pdb2mdb.exe</Pdb2mdbPath>
     </PropertyGroup>
 
+    <!-- Launches the game when running with or without debugger. -->
+    <PropertyGroup>
+        <StartAction>Program</StartAction>
+        <StartProgram>$(PlateUpInstallDir)\PlateUp\PlateUp.exe</StartProgram>
+    </PropertyGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\BepinEx\BepInEx.Core\BepInEx.Core.csproj" />
         <ProjectReference Include="..\BepinEx\Runtimes\Unity\BepInEx.Unity.Mono\BepInEx.Unity.Mono.csproj" />
     </ItemGroup>
 
-    <!-- <Target Name="PostBuildDebug" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
-    <Message Text="Running pdb2mdb.exe on $(TargetPath)" Importance="high" />
-    <Exec Command="$(Pdb2mdbPath) $(TargetPath)"/>
+    <Target Name="PostBuildDebug" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
 
-    <Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(TestModDeployPath)" />
+        <Copy SourceFiles="$(TargetPath);" DestinationFolder="$(BepinExPluginsDir)" />
+    </Target>
 
-    <ItemGroup>
-    <WorkshopReferences Include="@(ReferencePath)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Identity)', '.*\\steamapps\\workshop\\content.*$'))" />
-</ItemGroup>
-<Copy SourceFiles="@(WorkshopReferences)" DestinationFolder="$(BepinExPluginsDir)" />
-<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).dll.mdb" DestinationFolder="$(BepinExPluginsDir)" />
-</Target> -->
-
-    <!-- References -->
-    <ItemGroup>
-        <!-- <Reference Include="BepInEx.Core">
-            <HintPath>$(PlateUpInstallDir)\PlateUp\BepInEx\Core\BepInEx.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="BepInEx.Unity.Mono">
-            <HintPath>$(PlateUpInstallDir)\PlateUp\BepInEx\Core\BepInEx.Unity.Mono.dll</HintPath>
-        </Reference> -->
-
-    </ItemGroup>
 </Project>
