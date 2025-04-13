@@ -1,7 +1,6 @@
-# TODO clean repo first
 Push-Location $PSScriptRoot
 
-Remove-Item ./dist -Force -Recurse
+git clean -fxd
 mkdir ./dist -ErrorAction SilentlyContinue
 
 # Building BepinEx
