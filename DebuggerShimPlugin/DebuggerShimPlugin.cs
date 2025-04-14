@@ -11,21 +11,16 @@ namespace DebuggerShimPlugin
 
         [UsedImplicitly]
         public void Awake()
-        {
-            // TODO I should consider scanning the workshop dir and loading those dlls first
-            // TODO I should also consider scanning the mods dir instead of requiring mods to be copied here
-            // TODO it is currently going to be a requirement that .pdb's are copied over to the appropriate directory
-            log = Logger;
+        {            log = Logger;
             log.LogInfo("Loading BepinEx Debugger Shim");
 
-            var plateUpAppDir = Directory.GetCurrentDirectory();
-            var bepinExDir = Path.Combine(plateUpAppDir, "BepInEx/Plugins");
+            var plateUpAppDir = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\PlateUp\\PlateUp";
+            var modsDir = Path.Combine(plateUpAppDir, "Mods");
             var pdb2mdbPath = Path.Combine(plateUpAppDir, "Libraries/pdb2mdb.exe");
 
-            // Getting dlls in plugin dir
-            var directoryInfo = new DirectoryInfo(bepinExDir);
-            var filesInDir = directoryInfo.GetFiles("*.dll")
-                                          .Where(e => !e.Name.Contains(nameof(DebuggerShimPlugin)))
+            // Finding all .dlls
+            var directoryInfo = new DirectoryInfo(modsDir);
+            var filesInDir = directoryInfo.GetFiles("*.dll", SearchOption.AllDirectories)
                                           .ToList();
 
             // Dynamically loading each mod here prior to the game attempting to load the mod itself.

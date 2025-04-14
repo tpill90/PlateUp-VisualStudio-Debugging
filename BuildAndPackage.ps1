@@ -1,3 +1,4 @@
+# TODO put this into a github action job at some point
 Push-Location $PSScriptRoot
 
 # git clean -fxd
