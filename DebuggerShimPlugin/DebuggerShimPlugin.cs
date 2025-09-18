@@ -11,12 +11,20 @@ namespace DebuggerShimPlugin
 
         [UsedImplicitly]
         public void Awake()
-        {            log = Logger;
+        {
+            log = Logger;
             log.LogInfo("Loading BepinEx Debugger Shim");
 
+            // TODO this needs to be determined dynamically at runtime because it can and will likely change
             var plateUpAppDir = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\PlateUp\\PlateUp";
             var modsDir = Path.Combine(plateUpAppDir, "Mods");
             var pdb2mdbPath = Path.Combine(plateUpAppDir, "Libraries/pdb2mdb.exe");
+
+            if (!Directory.Exists(modsDir))
+            {
+                log.LogWarning("No mods dir found!  Nothing to load!");
+                return;
+            }
 
             // Finding all .dlls
             var directoryInfo = new DirectoryInfo(modsDir);
