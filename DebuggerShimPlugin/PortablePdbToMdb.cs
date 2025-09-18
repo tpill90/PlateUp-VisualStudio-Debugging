@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.IO;
 using System.Linq;
 using Microsoft.Build.Framework;
@@ -68,3 +68,4 @@ public class PortablePdbToMdb : Task
 
 // 			Console.WriteLine("Done");
 // 			return 0;
+*/

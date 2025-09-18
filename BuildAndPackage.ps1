@@ -1,4 +1,5 @@
 # TODO put this into a github action job at some point
+$ErrorActionPreference = "Stop"
 Push-Location $PSScriptRoot
 
 git clean -fxd -e .vs
