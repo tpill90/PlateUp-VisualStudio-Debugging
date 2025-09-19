@@ -34,6 +34,8 @@
     <ItemGroup>
         <ProjectReference Include="..\BepinEx\BepInEx.Core\BepInEx.Core.csproj" />
         <ProjectReference Include="..\BepinEx\Runtimes\Unity\BepInEx.Unity.Mono\BepInEx.Unity.Mono.csproj" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.13.9" />
+        <PackageReference Include="Mono.Cecil" Version="0.11.6" />
     </ItemGroup>
 
     <Target Name="PostBuildDebug" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">

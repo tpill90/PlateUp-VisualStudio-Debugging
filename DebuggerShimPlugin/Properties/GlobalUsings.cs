@@ -6,3 +6,8 @@ global using BepInEx;
 global using System.IO;
 global using System.Linq;
 global using DebuggerShimPlugin.Properties;
+global using System;
+global using Microsoft.Build.Framework;
+global using Microsoft.Build.Utilities;
+global using Mono.Cecil;
+global using Mono.Cecil.Mdb;

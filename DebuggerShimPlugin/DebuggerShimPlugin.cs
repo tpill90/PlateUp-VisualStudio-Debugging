@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace DebuggerShimPlugin
 {
@@ -48,7 +47,7 @@ namespace DebuggerShimPlugin
 
                 if (File.Exists(pdbPath))
                 {
-                    GenerateMdb(file, pdbPath, pdb2mdbPath);
+                    GenerateMdbManaged(file);
                 }
 
                 Assembly assembly = Assembly.LoadFrom(file.FullName);
@@ -57,7 +56,7 @@ namespace DebuggerShimPlugin
         }
 
         //TODO refactor this signature + general refactor + comment
-        private static void GenerateMdb(FileInfo file, string pdbPath, string pdbToMdbPath)
+        private static void GenerateMdbManaged(FileInfo file)
         {
             var fileNameNoExtension = Path.GetFileNameWithoutExtension(file.FullName);
             FileInfo pdbFileInfo = new FileInfo($"{file.Directory}\\{fileNameNoExtension}.pdb");
@@ -68,20 +67,20 @@ namespace DebuggerShimPlugin
                 return;
             }
 
-            var process = new Process
+            var module = ModuleDefinition.ReadModule(file.FullName, new()
             {
-                StartInfo =
-                {
-                    FileName = pdbToMdbPath,
-                    Arguments = $"\"{file.FullName}\"",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true
-                }
-            };
+                ReadSymbols = true
+            });
 
-            process.Start();
-            process.WaitForExit();
+            var allMethod = module.GetTypes().SelectMany(x => x.Methods);
+            var writerProvider = new MdbWriterProvider();
+            using (var writer = writerProvider.GetSymbolWriter(module, file.FullName))
+            {
+                foreach (MethodDefinition methodDefinition in allMethod)
+                {
+                    writer.Write(methodDefinition.DebugInformation);
+                }
+            }
 
             log.LogWarning($"Generated new .mdb for {file.Name}");
         }
